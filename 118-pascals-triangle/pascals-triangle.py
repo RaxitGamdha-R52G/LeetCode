@@ -1,10 +1,9 @@
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-        k=[[0]*(i+1) for i in range(numRows)]
         if numRows==0:
-            return []
+            return []        
         else:
-            k[0][0]=1
+            k=[[0]*(i+1) for i in range(numRows)]
             for i in range(len(k)):
                 for j in range(len(k[i])):
                     if j==0 or j==len(k[i])-1:
