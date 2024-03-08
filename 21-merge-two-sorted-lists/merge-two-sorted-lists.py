@@ -10,9 +10,7 @@ class Solution:
         while list1!=None or list2!=None:
             q=list1 if list1 is not None else "__"
             p=list2 if list2 is not None else "__"
-            if p=="__" and q=="__":
-                continue
-            elif (q=="__" ) or (p!="__" and p.val<=q.val):
+            if (q=="__" ) or (p!="__" and p.val<=q.val):
                 Node=p
                 list2=list2.next
             else:
