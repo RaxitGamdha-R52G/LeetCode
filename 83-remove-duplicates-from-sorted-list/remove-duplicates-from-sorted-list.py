@@ -15,7 +15,7 @@ class Solution:
             else:
                 q = q.next
             p = p.next
-        
+        q.next = None
         return head
             
 
