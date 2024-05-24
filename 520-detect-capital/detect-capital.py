@@ -1,10 +1,8 @@
 class Solution:
     def detectCapitalUse(self, word: str) -> bool:
         w=False
-        if word.isupper():
-            w=w or True
-        if word.islower():
-            w=w or True
-        if word[0].isupper() and word[1:].islower():
-            w= w or True
+        l=[word.isupper(),word.islower(),word[0].isupper() and word[1:].islower()]
+        for i in l:
+            if i:
+                w=w or i
         return w
