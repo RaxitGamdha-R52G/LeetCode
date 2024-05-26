@@ -9,9 +9,11 @@ class Solution:
         if head is None or head.next is None:
             return False
         p=head
-        q=head.next
-        while  q and q.next:
-            if p == q.next :return True
+        q=head.next.next
+        while  q!=None:
+            if p == q :return True
             p=p.next
+            if q.next is None:
+                return False
             q=q.next.next
         return False
