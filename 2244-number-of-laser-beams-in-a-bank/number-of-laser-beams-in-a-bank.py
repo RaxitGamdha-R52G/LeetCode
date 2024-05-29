@@ -8,8 +8,8 @@ class Solution:
         
         r1 = 0
         for i in row_lst:
-            total_beams += r1 * i
             if i > 0:
+                total_beams += r1 * i
                 r1 = i
         return total_beams
         
