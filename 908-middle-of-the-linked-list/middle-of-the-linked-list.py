@@ -8,12 +8,9 @@ class Solution:
         if head is None or head.next is None:
             return head
         p=head
-        q=head.next
-        while q != None:
-            if q.next and q.next.next :
-                q = q.next.next
-            else:
-                break
+        q=head
+        while q and q.next:
+            q = q.next.next
             p=p.next
-        return p.next
+        return p
         
