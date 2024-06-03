@@ -13,5 +13,5 @@ class Solution:
         while p:
             s+=str(p.val)
             p = p.next
-        return int('0b'+s,2)
+        return int(s,2)
         
