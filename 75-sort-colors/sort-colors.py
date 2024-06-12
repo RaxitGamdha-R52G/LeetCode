@@ -7,7 +7,7 @@ class Solution:
             if nums[k] == 0:
                 nums[k],nums[i] = nums[i],nums[k]
                 i+=1
-            elif nums[k] == 2 and k < j:
+            elif nums[k] == 2 :
                 nums[k],nums[j] = nums[j],nums[k]
                 j-=1
                 continue
