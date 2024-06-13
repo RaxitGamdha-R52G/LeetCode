@@ -9,7 +9,5 @@ class Solution:
             return mid
         elif nums[mid] > target:
             return self.searchInsert(nums[:mid], target)
-        elif nums[mid] < target:
-            return mid + 1 + self.searchInsert(nums[mid + 1:], target)
         else:
-            return mid + 1
+            return mid + 1 + self.searchInsert(nums[mid + 1:], target)
