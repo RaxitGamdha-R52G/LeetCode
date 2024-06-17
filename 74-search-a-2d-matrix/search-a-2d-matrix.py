@@ -9,12 +9,14 @@ class Solution:
         mid_a = 0          
         while left <= right:
             mid = (left+right)//2
-            if d and matrix[mid_a][mid] == target:
-                return True
-            elif d and matrix[mid_a][mid] < target:
-                left = mid + 1
-            elif d and matrix[mid_a][mid] > target:
-                right = mid - 1
+            if d:
+                if matrix[mid_a][mid] == target:
+                    return True
+                elif matrix[mid_a][mid] < target:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+
             elif matrix[mid][0] <= target <= matrix[mid][n-1]:
                 right = n-1
                 left = 0
