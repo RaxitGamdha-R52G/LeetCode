@@ -7,6 +7,4 @@ class Solution:
                 k = i[0]
             k += i[1]
             result.append(k-i[0])
-
-        print(result)
         return sum(result) / len(result)      
