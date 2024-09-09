@@ -5,16 +5,15 @@ class Solution(object):
         :type word2: str
         :rtype: str
         """
-        d= min(len(word1),len(word2))
-        result = []
+        A, B = len(word1), len(word2)
         i = 0
-
-        while i < d:
-            result.append(word1[i])
-            result.append(word2[i])
-            i+=1
-        result+= word1[i:]
-        result+= word2[i:]
+        result = []
+        while i < A or i < B:
+            if i < A:
+                result.append(word1[i])
+            if i < B:
+                result.append(word2[i])
+            i += 1
 
         return ''.join(result)
         
