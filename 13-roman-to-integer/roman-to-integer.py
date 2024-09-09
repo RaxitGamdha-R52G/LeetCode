@@ -10,18 +10,15 @@ class Solution:
             "M":1000,
         }
         c=0
-
+        S = len(s)
         i = 0
-        while i < len(s) - 1:
-            if a[s[i]] < a[s[i + 1]]:
+        while i < S:
+            if i < S - 1 and a[s[i]] < a[s[i + 1]]:
                 c += a[s[i + 1]] - a[s[i]]
                 i += 2
             else:
                 c += a[s[i]]
                 i += 1
 
-        if i < len(s):
-            c += a[s[i]]
-
         return c
-            
+        
