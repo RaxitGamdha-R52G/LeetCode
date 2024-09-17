@@ -1,14 +1,5 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
-        # result = ''
-        # while num > 0:
-        #     n_z = len(str(num))-1
-        #     tens = 10**n_z
-        #     d = num
-        #     num %= tens
-        #     result += self.roman(d - num)
-        
-        # return result
         return self.roman(num)
 
     
