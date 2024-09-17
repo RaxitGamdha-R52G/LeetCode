@@ -1,33 +1,24 @@
 class Solution:
     def intToRoman(self, num: int) -> str:
-        return self.roman(num)
-
-    
-    def roman(self,num):
-        n = {
-            1:'I',
-            5:'V',
-            10:'X',
-            50:'L',
-            100:'C',
+        result=[]
+        r_n = {
+            1000:'M',
+            900:'CM',
             500:'D',
-            1000:'M'
+            400:'CD',
+            100:"C",
+            90:'XC',
+            50:'L',
+            40:'XL',
+            10:"X",
+            9:'IX',
+            5:"V",
+            4:"IV",
+            1:"I"
         }
-        answer = ''
-        while num > 0:
-            n_z = len(str(num))-1
-            v = 1 if str(num)[0] < '5' or str(num)[0] == '9' else 5
-            tens = v*10**n_z if n_z > 0 else v
-            if num in n.keys():
-                answer += n[num]
-                num = 0
-            elif v != 5 and num+tens - num % tens in n.keys():
-                answer += n[tens]
-                answer += n[num+tens - num % tens]
-                num = num % tens
-                
-            else:
-                answer += n[tens]
-                num -= tens
-                
-        return answer
+        for i in r_n:
+            while i<= num:
+                num -= i
+                result.append(r_n[i])
+        
+        return "".join(result)
