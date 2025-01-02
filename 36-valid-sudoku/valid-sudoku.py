@@ -1,43 +1,46 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         #Each Row
-        for i in range(9):
-            temp = []
-            for j in board[i]:
-                if j != ".":
-                    temp.append(j)
-            d = Counter(temp)
-            if not self.check(d):
-                return False
+        rows = []
 
         #Each Column
-        for j in range(9):
-            temp = []
-            for i in range(9):
-                if board[i][j] != ".":
-                    temp.append(board[i][j])
-            d = Counter(temp)
-            if not self.check(d):
-                return False
-        
+        columns = []
+
         #Each Box
-        temp = [[] for i in range(9)]
+        box = [[] for i in range(9)]
         q = 0
         c_arr = -1
+        
         for i in range(9):
-            if i % 3 == 0:
+            temp_r = [] # For rows
+            temp_c = [] # For columns
+
+            if i % 3 == 0: #For Boxes
                 c_arr += 1
+
             for j in range(9):
-                if board[i][j] != ".":
+                t_r = board[i][j] 
+                if t_r != ".":
+                    temp_r.append(t_r)
+
                     q = j//3
-                    temp[q+3*c_arr].append(board[i][j])
+                    box[q+3*c_arr].append(board[i][j])
+
+                t_c = board[j][i]
+                if t_c != ".":
+                    temp_c.append(t_c)
+
+            rows.append(temp_r)
+            columns.append(temp_c)
         
-        print(temp)
+
+        merged_arr = [rows, columns, box]
         
-        for i in temp:
-            d = Counter(i)
-            if not self.check(d):
-                return False
+        for arr in merged_arr:
+            for i in arr:
+                d = Counter(i)
+                if not self.check(d):
+                    return False
         
         return True
     
