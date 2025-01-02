@@ -2,7 +2,7 @@ class Solution:
     def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
         w = len(words)
         result = []
-        match = lambda x: x.lower() in ('a','e','i','o','u')
+        match = lambda x: x in ('a','e','i','o','u')
         temp = [0]
         cur = 0
         for i in range(w):
