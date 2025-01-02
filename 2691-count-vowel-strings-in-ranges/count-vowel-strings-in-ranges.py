@@ -4,12 +4,11 @@ class Solution:
         result = []
         match = lambda x: x.lower() in ('a','e','i','o','u')
         temp = [0]
+        cur = 0
         for i in range(w):
             if words[i] != "" and match(words[i][0]) and match(words[i][-1]):
-                r = temp[-1]+1
-            else:
-                r = temp[-1]
-            temp.append(r)
+                cur+=1
+            temp.append(cur)
 
         for start,stop in queries:
             result.append(temp[stop+1] - temp[start])
