@@ -38,17 +38,16 @@ class Solution:
         
         for arr in merged_arr:
             for i in arr:
-                d = Counter(i)
-                if not self.check(d):
+                if not self.check(i):
                     return False
         
         return True
     
-    def check(self,d):
-        for val in d.values():
-            if val > 1:
-                return False
-        return True
+    def check(self,arr):
+        arr_set_len = len(set(arr))
+        arr_arr_len = len(arr)
+        
+        return arr_set_len == arr_arr_len
         
         
         
