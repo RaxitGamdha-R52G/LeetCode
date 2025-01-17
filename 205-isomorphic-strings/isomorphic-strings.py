@@ -7,9 +7,8 @@ class Solution:
                 return False
             else:
                 d = set(filter(lambda key:mapping[key]==t[i], mapping))
-                for el in d:
-                    if el != s[i]:
-                        return False
+                if len(d) > 0 and s[i] not in d:
+                    return False
             mapping[s[i]] = t[i]
         
         return True
