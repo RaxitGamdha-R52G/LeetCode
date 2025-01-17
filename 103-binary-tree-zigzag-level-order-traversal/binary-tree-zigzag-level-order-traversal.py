@@ -9,36 +9,27 @@ class Solution:
         result = []
         if not root:
             return result
-        arr = [root]
-        i = 0
-        level = 0
-        no_of_nodes = 1
-        prev = -1
-        while arr:
-            d = arr[i]
-            no_of_nodes -= 1
-            if not d:
-                arr.append(None)
-                arr.append(None)
+        queue = deque([root])
+
+        count = 0
+        while queue:
+            level_size = len(queue)
+            level_nodes = []
+
+            for n in range(level_size):
+                node = queue.popleft()
+                level_nodes.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            
+            if count % 2 == 0:
+                result.append(level_nodes)
             else:
-                arr.append(d.left)
-                arr.append(d.right)
-            if no_of_nodes == 0:
-                if level % 2 == 0:
-                    row = arr[prev + 1:prev + 2**level + 1]
-                else:
-                    row = arr[prev + 2**level : prev : -1]
-                temp = []
-                for node in row:
-                    if node:
-                        temp.append(node.val)
-                result.append(temp)
-                prev = i
-                level += 1
-                no_of_nodes = 2**level
-                if not any(arr[i+1:]):
-                    break
-            i += 1
+                result.append(level_nodes[::-1])
+            count += 1
         
         return result
             
