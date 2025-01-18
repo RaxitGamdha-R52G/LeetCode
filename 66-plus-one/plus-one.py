@@ -1,7 +1,15 @@
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        digits = list(map(str,digits))
-        s = ''.join(digits)
-        s = str(int(s)+1)
-        return [int(i) for i in s]
+        carry = 1
+        length = len(digits)
+        i = length-1
+        while 0 <= i < length :
+            if digits[i] == 9:
+                digits[i] = 0
+            else:
+                digits[i] += 1
+                return digits
+            i -= 1
+        
+        return [carry] + digits
         
