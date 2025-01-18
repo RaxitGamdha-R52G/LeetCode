@@ -1,15 +1,5 @@
 class Solution:
     def maxScoreWords(self, words: List[str], letters: List[str], score: List[int]) -> int:
-        # f_word = []
-        # v = set(letters)
-        # for word in words:
-        #     flag = 1
-        #     for char in word:
-        #         if char not in v:
-        #             flag = 0
-        #             break
-        #     if flag:
-        #         f_word.append(word)
         result = []
         length = len(words)
 
