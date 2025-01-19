@@ -1,49 +1,44 @@
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
-        num = set('123456789')
+        rows = [set() for _ in range(9)]  
+        cols = [set() for _ in range(9)]  
+        boxes = [set() for _ in range(9)]  
 
-        def find(row_index,col_index):
-            al = set()
-            for i in board[row_index]:
-                if i != "." and i not in al:
-                    al.add(i)
-            
-            for i in range(9):
-                d = board[i][col_index]
-                if d != "." and d not in al:
-                    al.add(d)
-            
-            box_pos_x = row_index // 3
-            box_pos_y = col_index // 3
-            for i in range(3):
-                for j in range(3):
-                    d = board[box_pos_x * 3 + i] [box_pos_y * 3 + j]
-                    if d != '.' and d not in al:
-                        al.add(d)
-            
-            return al
-
-            
         
-        def backtrack(row_index,col_index):
-            if row_index == 9:
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] != ".":
+                    num = board[i][j]
+                    rows[i].add(num)
+                    cols[j].add(num)
+                    boxes[(i // 3) * 3 + (j // 3)].add(num)
+
+        def backtrack(row, col):
+            if row == 9: 
                 return True
-            if col_index == 9:
-                return backtrack(row_index + 1, 0)
-            
-            if board[row_index][col_index] != ".":
-                return backtrack(row_index, col_index +1)
+            if col == 9:  
+                return backtrack(row + 1, 0)
+            if board[row][col] != ".":  
+                return backtrack(row, col + 1)
 
-            al = find(row_index, col_index)
-            req = num - al
+            box_index = (row // 3) * 3 + (col // 3)  
+            for num in "123456789":
+                if num not in rows[row] and num not in cols[col] and num not in boxes[box_index]:
+                    
+                    board[row][col] = num
+                    rows[row].add(num)
+                    cols[col].add(num)
+                    boxes[box_index].add(num)
 
-            for n in req:
-                board[row_index][col_index] = n
-                if backtrack(row_index, col_index +1):
-                    return True
-                board[row_index][col_index] = "."
+                    if backtrack(row, col + 1):  
+                        return True
+
+                    
+                    board[row][col] = "."
+                    rows[row].remove(num)
+                    cols[col].remove(num)
+                    boxes[box_index].remove(num)
+
             return False
-        
-        backtrack(0,0)
-        
-        
+
+        backtrack(0, 0)
