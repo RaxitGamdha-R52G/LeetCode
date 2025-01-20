@@ -10,17 +10,12 @@ class RecentCounter:
             self.front += 1
         self.queue.append(t)
         self.rear += 1
-        count = 0
 
         r = self.queue[self.rear] - 3000
-        i = self.rear
-        while i >= self.front:
-            if not (r <= self.queue[i]):
-                break
-            count += 1
-            i -= 1
+        while self.queue[self.front] < r:
+            self.front += 1
         
-        return count
+        return self.rear+1 - self.front
         
 
 
