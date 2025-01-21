@@ -4,7 +4,7 @@ class Solution:
         a = 0
         for i in derived:
             if i:
-                a = not a
+                a = ~ a
         
         return a == 0
         
