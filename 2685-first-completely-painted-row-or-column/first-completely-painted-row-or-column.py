@@ -8,8 +8,8 @@ class Solution:
             for j in range(n):
                 pos[mat[i][j]] = (i,j)
 
-        row = [n  for i in range(m)]
-        col = [m for i in range(n)]
+        row = [n] * m
+        col = [m] * n
 
         
         for k in range(len(arr)):
