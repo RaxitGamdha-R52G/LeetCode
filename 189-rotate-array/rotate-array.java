@@ -1,5 +1,5 @@
 class Solution {
-    public static void swap(int[] nums, int st, int end){
+    void swap(int[] nums, int st, int end){
         for(int i = 0; i < (end - st) /2;i++){
             int temp = nums[st + i];
             nums[st + i] = nums[end - i -1];
