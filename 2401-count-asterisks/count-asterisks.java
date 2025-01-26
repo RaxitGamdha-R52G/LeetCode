@@ -2,8 +2,7 @@ class Solution {
     public int countAsterisks(String s) {
         boolean check = false;
         int res = 0;
-        for(int i = 0; i< s.length();i++){
-            char c = s.charAt(i);
+        for(char c: s.toCharArray()){
             if(c == '|'){
                 check = !check;
             }else if(c == '*' && !check){
