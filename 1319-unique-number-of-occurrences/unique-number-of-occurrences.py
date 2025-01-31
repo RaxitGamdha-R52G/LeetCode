@@ -3,7 +3,5 @@ class Solution:
         from collections import Counter
         arr = Counter(arr)
         arr=list(arr.values())
-        for i in arr:
-            if arr.count(i) > 1:
-                return False
-        return True
+        arrSet = list(set(arr))
+        return sorted(arrSet) == sorted(arr)
