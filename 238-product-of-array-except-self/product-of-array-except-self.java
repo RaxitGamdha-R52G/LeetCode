@@ -1,0 +1,18 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int result[] = new int[nums.length];
+        result[0] = 1;
+        int mul = 1;
+        for(int i = 1;i<nums.length;i++){
+            mul *=nums[i-1];
+            result[i] = mul;
+        }
+        int rightMul = 1;
+        for(int i = nums.length - 1; i > -1; i--){
+            result[i] *= rightMul;
+            rightMul *= nums[i];
+        }
+
+        return result;
+    }
+}
