@@ -10,12 +10,6 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-        if(head == null){
-            return null;
-        }
-        if(head.next == null){
-            return head;
-        }
 
         ListNode prev = new ListNode(0), curr = head;
         prev.next= head;
