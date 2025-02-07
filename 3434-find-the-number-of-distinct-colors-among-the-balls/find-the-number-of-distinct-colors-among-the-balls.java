@@ -21,7 +21,8 @@ class Solution {
                 }
 
                 ballColor.put(ball, color);
-                colorCount.put(color, colorCount.getOrDefault(color, 0) + 1);
+                // colorCount.put(color, colorCount.getOrDefault(color, 0) + 1);
+                colorCount.merge(color, 1, Integer::sum);
             }
 
             result[i] = colorCount.size();
