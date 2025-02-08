@@ -1,6 +1,6 @@
 class NumberContainers {
     Map<Integer, Integer> hs;
-    Map<Integer, SortedSet<Integer>> container;
+    Map<Integer, PriorityQueue<Integer>> container;
 
 
     public NumberContainers() {
@@ -11,6 +11,8 @@ class NumberContainers {
     public void change(int index, int number) {
         if (hs.containsKey(index)) {
             int oldNumber = hs.get(index);
+            if(oldNumber == number) return;
+
             container.get(oldNumber).remove(index);
             if (container.get(oldNumber).isEmpty()) {
                 container.remove(oldNumber);
@@ -18,14 +20,18 @@ class NumberContainers {
         }
 
         hs.put(index, number);
-        container.putIfAbsent(number, new TreeSet<>());
-        container.get(number).add(index);
+        container.computeIfAbsent(number, k -> new PriorityQueue<>()).offer(index);
+        // if(!container.containsKey(number)){
+        //     container.put(number, new PriorityQueue<>());
+        // }
+        // // container.putIfAbsent(number, new PriorityQueue<>());
+        // container.get(number).offer(index);
         
     }
     
     public int find(int number) {
         if(container.containsKey(number)){
-            return container.get(number).first();
+            return container.get(number).peek();
         }else{
             return -1;
         }
