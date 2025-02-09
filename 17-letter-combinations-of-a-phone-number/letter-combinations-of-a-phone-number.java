@@ -3,15 +3,17 @@ class Solution {
     private List<String> result = new ArrayList<>();
     private String num;
 
-    private void backtrack(String temp, int curr){
+    private void backtrack(StringBuilder temp, int curr){
         if(curr == num.length()){
-            result.add(temp);
+            result.add(temp.toString());
             return;
         }
 
         int c = Character.getNumericValue(num.charAt(curr));
         for(char ch: arr[c-2].toCharArray()){
-            backtrack(temp+ch, curr+1);
+            temp.append(ch);
+            backtrack(temp, curr+1);
+            temp.deleteCharAt(temp.length()-1);
         }
     }
 
@@ -27,7 +29,7 @@ class Solution {
         arr[7] = "wxyz";
 
         num = digits;
-        backtrack("", 0);
+        backtrack(new StringBuilder(), 0);
         return result;
     }
 }
