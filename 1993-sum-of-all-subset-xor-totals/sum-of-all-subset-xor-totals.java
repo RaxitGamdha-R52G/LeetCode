@@ -1,31 +1,20 @@
 class Solution {
     private int n;
-    private List<Integer> path = new ArrayList<>();
     private int result = 0;
 
-    private void calc(){
-        int xor = 0;
-        for(int num: path){
-            xor ^= num;
-        }
-        result += xor;
-    }
-
-    private void backtrack(int curr, int[] arr){
+    private void backtrack(int curr, int[] arr, int sum){
         if(curr == n){
-            calc();
+            result += sum;
             return;
         }
 
-        path.add(arr[curr]);
-        backtrack(curr+1, arr);
-        path.remove(path.size()-1);
-        backtrack(curr+1, arr);
+        backtrack(curr+1, arr, sum ^ arr[curr]);
+        backtrack(curr+1, arr, sum);
     }
 
     public int subsetXORSum(int[] nums) {
         n = nums.length;
-        backtrack(0, nums);
+        backtrack(0, nums, 0);
         return result;
     }
 }
