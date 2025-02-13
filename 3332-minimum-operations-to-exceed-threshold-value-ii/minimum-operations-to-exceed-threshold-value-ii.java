@@ -1,21 +1,21 @@
 class Solution {
     public int minOperations(int[] nums, int k) {
-        PriorityQueue<Long> pq = new PriorityQueue<>();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         for (int num : nums) {
-            pq.add((long)num);
+            if (num < k) {
+                pq.add(num);
+            }
         }
 
-        int result = 0;
-        
-        while (pq.size() > 1 && pq.peek() < k) {
-            long num1 = pq.poll();
-            long num2 = pq.poll();
-
-            long newNum = num1 * 2 + num2;
-            pq.add(newNum);
-            result++;
+        int op = 0;
+        while(!pq.isEmpty()){
+            int x = pq.poll();
+            op++;
+            if(pq.isEmpty()) break;
+            int y = pq.poll();
+            long up = 2l * x + y;
+            if(up<k) pq.add((int)up);
         }
-        
-        return result;
+        return op;
     }
 }
